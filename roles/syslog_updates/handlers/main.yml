@@ -1,8 +1,0 @@
----
-- name: restart_rsyslog
-  service:
-    name: rsyslog
-    state: restarted
-
-
-# handlers file for syslog_updates
