@@ -1,0 +1,13 @@
+---
+- name: Playbook to demonstrate handling of task failures
+  hosts: linux
+  pre_tasks:
+    - debug:
+        msg: "Beginning profile management tasks"
+
+  roles:
+    - profile_mgmt
+
+  post_tasks:
+    - debug:
+        msg: "Finished profile management tasks"

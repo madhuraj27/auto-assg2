@@ -1,0 +1,13 @@
+---
+# handlers file for webserver
+- name: httpd_restarted
+  systemd:
+    name: httpd
+    state: restarted
+    enabled: True
+
+- name: rebooted
+  systemd:
+    name: httpd
+    state: started
+    enabled: True

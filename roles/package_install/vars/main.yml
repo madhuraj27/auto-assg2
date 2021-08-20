@@ -1,0 +1,7 @@
+---
+packages:
+  - nfs-utils
+  - audit
+  - chrony
+
+# vars file for package_install

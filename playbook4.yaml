@@ -1,0 +1,31 @@
+---
+- name: Play for user and group creation
+  hosts: hum0964-c-vm1
+  vars:
+   userlist1: user10
+   userlist2: user20
+   grouplist1: group10
+   grouplist2: group20
+  tasks:
+    - name: create group10
+      group:
+       name: "{{ grouplist1 }}"
+       state: present
+    - name: create group20
+      group:
+       name: "{{ grouplist2 }}"
+       state: present
+    - name: create user10
+      user:
+       name: "{{ userlist1 }}"
+       groups: "{{ grouplist1 }}"
+       append: 1
+       uid: 1800
+    - name: create user20
+      user:
+       name: "{{ userlist2 }}"
+       groups: "{{ grouplist2 }}"
+       append: 1
+       uid: 1900
+       shell: /bin/bash
+       home: /home/"{{ userlist2 }}"

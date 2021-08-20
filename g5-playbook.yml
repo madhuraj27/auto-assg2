@@ -1,0 +1,16 @@
+---
+- name: Playbook to demonstrate roles
+  hosts: linux
+  pre_tasks:
+    - debug:
+        msg: "Beginning activities"
+
+  roles:
+     - datadisk
+     - system_profile
+     - users 
+     - webserver
+
+  post_tasks: 
+    - debug:
+        msg: "Success"

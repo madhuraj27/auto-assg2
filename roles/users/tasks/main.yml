@@ -1,0 +1,22 @@
+---
+# tasks file for users
+    - name: add group
+      group:
+        name: "{{ item.groupname }}"
+        state: present
+      loop: "{{ mygroup }}"
+
+    - name:  add users
+      user:
+        name: "{{ item.newuser }}"
+        state: present
+        groups: "{{ item.group1 }}, {{ item.group2 }}"
+        append: yes
+      loop: "{{ myuser }}"
+
+    - name: add users key
+      authorized_key:
+        user: "{{ item.newuser }}"
+        state: present
+        key: "{{ lookup('file', lookup('env','HOME') + '/.ssh/id_rsa.pub') }}"
+      loop: "{{ myuser }}"

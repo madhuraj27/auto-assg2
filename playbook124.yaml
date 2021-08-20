@@ -1,0 +1,13 @@
+---
+- name: Playbook to demonstrate syslog service management
+  hosts: linux
+  pre_tasks:
+    - debug:
+        msg: "Beginning of syslog service management tasks"
+
+  roles:
+    - syslog_updates
+
+  post_tasks:
+    - debug:
+        msg: "Success" 

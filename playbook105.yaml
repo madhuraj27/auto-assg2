@@ -1,0 +1,11 @@
+---
+- name: install the packages if the conditions met
+  hosts: hum0964-c-vm2 
+  tasks: 
+    - name: packages to install
+      yum:
+        name: "{{ packages }}"
+        state: present
+
+      loop: "{{ ansible_mounts }}"
+      when: item.size_available >= 2000000 and item.mount == "/var"

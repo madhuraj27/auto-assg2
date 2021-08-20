@@ -1,0 +1,11 @@
+---
+- name: File changes
+  blockinfile:
+    path: "{{ filepath }}"
+    insertafter: EOF
+    backup: yes
+    state: present
+    block: |
+      #This is a test block added by Ansible…… {{ lookup('env','HOSTNAME') }}
+      export TMOUT=1800
+  

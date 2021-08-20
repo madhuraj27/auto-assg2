@@ -1,0 +1,26 @@
+---
+- name: Playbook to demonstrate handlers
+  hosts: hum0964-c-vm2
+  tasks:
+    - name: install apache, mariadb-server
+      yum:
+       name: httpd,mariadb-server
+       state: present
+      notify:
+        - restart_httpd
+        - restart_mariadb
+
+  handlers:
+    - name: restart_httpd
+      systemd:
+        name: httpd
+        state: restarted
+    - name: restart_mariadb
+      systemd:
+        name: mariadb
+        state: restarted
+        enabled: true
+    - name: add hostname
+      shell: |
+           systemctl status httpd
+           systemctl status mariadb

@@ -1,0 +1,26 @@
+---
+- name: add text in /etc/rsyslog.conf file 
+  blockinfile:
+    path: /etc/rsyslog.conf
+    insertafter: EOF
+    state: present
+    backup: yes
+    block: |
+      $FileCreateMode 0640
+
+- name: set /etc/rsyslog.d ownership and permissions
+  file:
+    path: /etc/rsyslog.d
+    mode: 0640
+    owner: root
+    group: root
+    recurse: yes
+
+- name: set /var/log permission
+  file:
+    path: /var/log
+    mode: 0775
+  notify:
+    - restart_rsyslog
+
+# tasks file for syslog_updates

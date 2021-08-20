@@ -1,0 +1,5 @@
+---
+# vars file for system_profile
+
+filepath: /etc/profile
+    

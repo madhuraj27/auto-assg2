@@ -1,0 +1,15 @@
+---
+- name: Playbook to demonstrate package and package management
+  hosts: linux
+  pre_tasks:
+    - debug:
+        msg: "Beginning package management activities"
+
+  roles:
+    - package_remove
+    - package_install
+    - patching
+
+  post_tasks:
+    - debug:
+        msg: "Finished package management activities"

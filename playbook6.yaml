@@ -1,0 +1,14 @@
+---
+- name: Play to demonstrate use of host variables
+  hosts: hum0964-c-vm1
+  tasks:
+   - name: Install packages
+     yum:
+      name: "{{ packages }}"
+      state: latest
+
+   - name: Make sure package is running
+     systemd:
+      name: "{{ packages }}"
+      state: started
+      enabled: yes

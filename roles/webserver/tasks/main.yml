@@ -1,0 +1,22 @@
+---
+# tasks file for webserver
+    - name: Apache install
+      yum:
+        name: "{{ packages }}"
+        state: present
+      notify: 
+        - httpd_restarted
+
+    - name: create index file and copy
+      shell: "echo $HOSTNAME > index.html && cp index.html /var/www/html/index.html"
+      
+    - name: add permission
+      file:
+        state: file
+        path: /var/www/html/index.html
+        mode: '0444'
+      notify: 
+        - httpd_restarted
+    
+    
+

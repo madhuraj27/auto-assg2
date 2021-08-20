@@ -1,0 +1,30 @@
+---
+- name: add ssh session timeout value to file
+  blockinfile:
+    path: "{{ path }}"
+    insertafter: EOF
+    backup: yes
+    state: present
+    block: |
+      export TMOUT=900
+
+- name: setting umask value to umask 0077
+  lineinfile:
+    path: "{{ path }}"
+    regex: "^umask"
+    line: "umask 0077"
+    state: present
+
+- name: task to execute if any of above fails
+  lineinfile:
+    path: ~/.bash_profile
+    regex: "^umask"
+    line: "umask 0066"
+    state: present
+
+- name: task to run irrespective of others
+  debug:
+    msg: Execution completed
+
+
+# tasks file for profile_mgmt
