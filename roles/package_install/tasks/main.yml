@@ -1,8 +1,0 @@
----
-- name: Install required packages
-  package:
-    name: "{{ packages }}"
-    state: present
-  when: ansible_distribution == "RedHat" or ansible_distribution == "CentOS"
-
-# tasks file for package_install
