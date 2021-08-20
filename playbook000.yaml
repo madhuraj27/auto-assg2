@@ -1,6 +1,0 @@
----
-- name: Playbook to show which node user1 existed
-  hosts: linux
-  tasks:
-   - name: Capture user information
-     command: cat /etc/passwd
